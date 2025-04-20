@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	interal "github.com/Foren-Ken/Go-WebWiki/internal"
+	internl "github.com/Foren-Ken/Go-WebWiki/internal"
 	server "github.com/Foren-Ken/Go-WebWiki/pkg/server"
 )
 
@@ -27,7 +27,7 @@ func main() {
 
 	conflocation := filepath.Join(dir, "Go-WebWiki.conf") // Location of the Configuratiuon file.
 
-	interal.Setup(conflocation, webroot)
+	internl.Setup(conflocation, webroot)
 
 	server.Webroot = webroot
 	server.StartServer()

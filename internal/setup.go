@@ -1,8 +1,10 @@
-package interal
+package internal
 
 import (
 	"fmt"
 	"os"
+
+	"github.com/go-git/go-git/v5"
 )
 
 func Setup(conflocation string, webroot string) {
@@ -18,4 +20,20 @@ func Setup(conflocation string, webroot string) {
 	if derr != nil {
 		fmt.Println("Directory could not be made, most likely directory exists!", derr) // Error handling
 	}
+
+	var githuburl string
+
+	fmt.Print("Please input a github wiki directory.\n Example: https://github.com/Foren-Ken/tech-journal.wiki.git\n")
+	fmt.Scanln(&githuburl)
+
+	_, err := git.PlainClone(webroot, false, &git.CloneOptions{
+		URL:      githuburl,
+		Progress: os.Stdout,
+	})
+
+	if err != nil {
+		fmt.Printf("Error Cloning Repository %s\n", err)
+		return
+	}
+	fmt.Printf("Sucessfully Cloned Repository %s\n", githuburl)
 }
